@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requirements Gathering Form - Scholarship System (Responsive)</title>
+    <title>Requirements Gathering Form - Scholarship System</title>
     <style>
         /* =========================================
-           1. CORE STYLES (ใช้กับทุกหน้าจอ)
+           1. CORE STYLES
            ========================================= */
         body {
             font-family: 'Sarabun', 'TH SarabunPSK', Arial, sans-serif;
@@ -19,7 +19,6 @@
 
         .document {
             background: white;
-            /* เปลี่ยนจากความกว้าง Fixed เป็น max-width เพื่อความยืดหยุ่น */
             max-width: 21cm; 
             margin: 0 auto;
             padding: 2.5cm;
@@ -35,21 +34,11 @@
             margin-bottom: 30px;
         }
 
-        h1 {
-            color: #2c3e50;
-            font-size: 24px;
-            margin: 0 0 10px 0;
-        }
-
-        .subtitle {
-            color: #7f8c8d;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
+        h1 { color: #2c3e50; font-size: 24px; margin: 0 0 10px 0; }
+        .subtitle { color: #7f8c8d; font-size: 18px; margin-bottom: 10px; }
         .status-badge {
             display: inline-block;
-            background: #27ae60;
+            background: #2980b9;
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
@@ -75,6 +64,8 @@
             padding-bottom: 5px;
         }
 
+        h4 { margin-top: 15px; margin-bottom: 10px; color: #2c3e50; }
+
         /* Content Boxes */
         .info-box {
             background: #f8f9fa;
@@ -89,36 +80,21 @@
             padding: 8px 0;
             border-bottom: 1px solid #e9ecef;
         }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            font-weight: bold;
-            color: #495057;
-            width: 30%; /* ปรับเปอร์เซ็นต์แทน px เพื่อความยืดหยุ่น */
-            min-width: 150px;
-            flex-shrink: 0;
-        }
-
-        .info-value {
-            color: #212529;
-            flex-grow: 1;
-            word-break: break-word; /* ป้องกันข้อความยาวทะลุกล่อง */
-        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { font-weight: bold; color: #495057; width: 30%; min-width: 150px; flex-shrink: 0; }
+        .info-value { color: #212529; flex-grow: 1; word-break: break-word; }
 
         /* Tables */
         .table-container {
             width: 100%;
-            overflow-x: auto; /* ทำให้เลื่อนแนวนอนได้ในมือถือ */
+            overflow-x: auto;
             margin: 15px 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 600px; /* บังคับให้ตารางมีความกว้างขั้นต่ำ (จะเกิด Scroll ในมือถือ) */
+            min-width: 600px;
         }
 
         th {
@@ -127,7 +103,7 @@
             padding: 12px;
             text-align: left;
             font-weight: bold;
-            white-space: nowrap; /* ห้ามตัดคำในหัวตาราง */
+            white-space: nowrap;
         }
 
         td {
@@ -138,11 +114,12 @@
 
         tr:nth-child(even) { background: #f8f9fa; }
 
-        /* Badges & UI Elements */
+        /* UI Elements & Badges */
         .priority-p0 { background: #e74c3c; color: white; padding: 3px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; }
         .priority-p1 { background: #f39c12; color: white; padding: 3px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; }
-        .checkmark { color: #27ae60; font-weight: bold; }
+        .checkmark { color: #27ae60; font-weight: bold; margin-right: 5px; }
 
+        /* Process Steps */
         .process-step {
             background: #fff;
             border-left: 4px solid #3498db;
@@ -151,8 +128,36 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             border-radius: 0 5px 5px 0;
         }
-
         .process-step h4 { color: #3498db; margin-top: 0; }
+
+        /* Role Sections */
+        .role-section {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        .role-student { background-color: #f0f8ff; border-left: 5px solid #3498db; }
+        .role-admin { background-color: #fff5e6; border-left: 5px solid #f39c12; }
+        .role-system { background-color: #f0fff4; border-left: 5px solid #27ae60; }
+        .role-section h3 { margin-top: 0; border-bottom: none; }
+
+        /* Dashboard Mockup Styles */
+        .filter-bar {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: flex-end;
+        }
+        .filter-group { display: flex; flex-direction: column; gap: 5px; }
+        .filter-group label { font-size: 12px; font-weight: bold; color: #7f8c8d; }
+        .filter-group input, .filter-group select {
+            padding: 6px; border: 1px solid #bdc3c7; border-radius: 4px; min-width: 120px;
+        }
 
         /* Code Blocks */
         pre {
@@ -168,78 +173,32 @@
         .code-string { color: #2ecc71; }
         .code-number { color: #e74c3c; }
 
-        /* Button */
-        .button-container { text-align: center; margin: 40px 0; }
-        .print-btn {
-            background: #3498db; color: white; border: none; padding: 12px 30px;
-            font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .print-btn:hover { background: #2980b9; transform: translateY(-1px); }
-        
-        .footer {
-            margin-top: 50px; padding-top: 20px; border-top: 2px solid #ecf0f1;
-            text-align: center; color: #7f8c8d; font-size: 14px;
-        }
+        /* Utilities */
+        ul { padding-left: 20px; }
+        li { margin-bottom: 5px; }
 
         /* =========================================
-           2. RESPONSIVE STYLES (สำหรับมือถือ/แท็บเล็ต)
+           2. RESPONSIVE STYLES
            ========================================= */
         @media screen and (max-width: 768px) {
-            body {
-                padding: 10px; /* ลดขอบจอ */
-            }
-
-            .document {
-                padding: 20px; /* ลดขอบกระดาษ */
-                width: auto;
-                max-width: 100%;
-            }
-
-            .header { margin-bottom: 20px; padding-bottom: 15px; }
-            h1 { font-size: 20px; }
-            .subtitle { font-size: 16px; }
-
-            /* ปรับ Info Box ให้เป็นแนวตั้ง */
-            .info-row {
-                flex-direction: column;
-            }
-
-            .info-label {
-                width: 100%;
-                margin-bottom: 5px;
-                color: #2c3e50;
-            }
-
-            .info-value {
-                padding-left: 0;
-            }
-
-            /* ปรับขนาด Font */
-            h2 { font-size: 16px; margin-top: 20px; }
-            h3 { font-size: 15px; }
-            
-            ul, ol { padding-left: 20px; }
+            body { padding: 10px; }
+            .document { padding: 20px; max-width: 100%; }
+            .info-row { flex-direction: column; }
+            .info-label { width: 100%; margin-bottom: 5px; }
+            .filter-bar { flex-direction: column; align-items: stretch; }
+            .filter-group { width: 100%; }
+            .filter-group input, .filter-group select { width: 100%; box-sizing: border-box; }
         }
 
         /* =========================================
-           3. PRINT STYLES (สำหรับสั่งพิมพ์)
+           3. PRINT STYLES
            ========================================= */
         @media print {
-            body { margin: 0; padding: 0; background: white; }
-            .document {
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-                max-width: 100%;
-                border: none;
-            }
-            .no-print { display: none; }
+            body { background: white; }
+            .document { box-shadow: none; padding: 0; max-width: 100%; margin: 0; }
             .page-break { page-break-before: always; }
-            a { text-decoration: none; color: black; }
-            
-            /* ป้องกันการตัดหน้าในจุดที่ไม่ควรตัด */
-            .info-box, .process-step, table { page-break-inside: avoid; }
+            .info-box, .process-step, .role-section, table { page-break-inside: avoid; }
+            input, select { border: 1px solid #ccc; }
         }
     </style>
 </head>
@@ -248,7 +207,7 @@
         <div class="header">
             <h1>แบบฟอร์มเก็บความต้องการระบบ</h1>
             <div class="subtitle">(Requirements Gathering Form)</div>
-            <div class="status-badge">Status: Revised for File-based System</div>
+            <div class="status-badge">Status: REG Integration & Smart Verification</div>
         </div>
 
         <div class="section">
@@ -263,52 +222,108 @@
             <h3>1.2 ชื่อลูกค้า / หน่วยงาน</h3>
             <div class="info-box">
                 <div class="info-row">
-                    <div class="info-label">ชื่อ–นามสกุล:</div>
-                    <div class="info-value">[สมมติ: อาจารย์ที่ปรึกษาโครงการ / เจ้าหน้าที่งานทุน]</div>
-                </div>
-                <div class="info-row">
                     <div class="info-label">หน่วยงาน:</div>
                     <div class="info-value">กองพัฒนานักศึกษา</div>
                 </div>
             </div>
 
-            <h3>1.3 ผู้ติดต่อหลัก</h3>
-            <div class="info-box">
-                <div class="info-row">
-                    <div class="info-label">ชื่อ–นามสกุล:</div>
-                    <div class="info-value">[รอระบุ]</div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">ตำแหน่ง:</div>
-                    <div class="info-value">เจ้าหน้าที่ดูแลทุนการศึกษา</div>
-                </div>
-            </div>
-
-            <h3>1.4 ผู้มีส่วนได้ส่วนเสียหลัก (Stakeholders)</h3>
+            <h3>1.3 ผู้มีส่วนได้ส่วนเสียหลัก (Stakeholders)</h3>
             <ul>
                 <li><strong>นักศึกษา:</strong> ผู้ใช้งานหลักที่เข้ามาค้นหาและสมัครทุน</li>
-                <li><strong>เจ้าหน้าที่ (Admin):</strong> ผู้ประกาศทุนและกดอนุมัติเอกสาร</li>
+                <li><strong>เจ้าหน้าที่ (Admin):</strong> ผู้ประกาศทุนและตรวจสอบคุณสมบัติ</li>
             </ul>
         </div>
 
-        <div class="section page-break">
-            <h2>ส่วนที่ 2: เป้าหมายและความสำเร็จของระบบ (Business Goals)</h2>
+        <div class="section">
+            <h2>ส่วนที่ 2: เป้าหมายและความสำเร็จ (Business Goals)</h2>
             
-            <h3>2.1 เป้าหมายหลักของระบบคืออะไร</h3>
+            <h3>2.1 เป้าหมายหลัก</h3>
             <ul>
-                <li><span class="checkmark">✓</span> <strong>Centralized Data:</strong> รวมข้อมูลการสมัครทุนไว้ที่เดียว ลดการใช้กระดาษ</li>
-                <li><span class="checkmark">✓</span> <strong>Auto-Filter:</strong> ระบบช่วยคัดกรองทุนที่นักศึกษาสมัครไม่ได้ออกไป (เช่น เกรดไม่ถึงจะไม่เห็นปุ่มสมัคร)</li>
-                <li><span class="checkmark">✓</span> <strong>Tracking:</strong> นักศึกษารู้สถานะใบสมัครของตนเองได้ทันที (รอตรวจสอบ / อนุมัติ / ปฏิเสธ)</li>
-                <li><span class="checkmark">✓</span> <strong>Simple & Portable:</strong> ระบบทำงานได้ทันทีโดยไม่ต้องติดตั้ง Database Server (ใช้ไฟล์ JSON)</li>
+                <li><span class="checkmark">✓</span> <strong>Centralized Data:</strong> รวมข้อมูลการสมัครทุนไว้ที่เดียว</li>
+                <li><span class="checkmark">✓</span> <strong>Auto-Filter:</strong> ระบบคัดกรองทุนที่นักศึกษาสมัครไม่ได้ออกอัตโนมัติ</li>
+                <li><span class="checkmark">✓</span> <strong>Tracking:</strong> ติดตามสถานะได้ทันที (รอตรวจสอบ / อนุมัติ / ปฏิเสธ)</li>
             </ul>
 
             <h3>2.2 ตัวชี้วัดความสำเร็จ (KPI)</h3>
             <ul>
-                <li>ระบบสามารถกรองผู้ที่ขาดคุณสมบัติเบื้องต้นได้ 100%</li>
-                <li>สามารถบันทึกข้อมูลและเรียกดูข้อมูลย้อนหลังได้โดยข้อมูลไม่สูญหายเมื่อปิดโปรแกรม</li>
+                <li>ลดเวลาในการตรวจสอบเอกสารลง 50%</li>
+                <li>ข้อมูลถูกต้องตรงกับฐานข้อมูลทะเบียน 100%</li>
             </ul>
 
-            <h3>2.3 ลำดับความสำคัญของความต้องการ</h3>
+            <h3>2.3 มาตรการความถูกต้องและเชื่อมโยงระบบ (Integrity & Integration)</h3>
+            <div class="info-box" style="border-left: 5px solid #f39c12;">
+                <ul>
+                    <li><span class="checkmark">✓</span> <strong>REG UBU Integration:</strong> ดึงข้อมูลนักศึกษา (ชื่อ, คณะ, ชั้นปี, GPA) จากระบบทะเบียนโดยตรง</li>
+                    <li><span class="checkmark">✓</span> <strong>PDPA Compliance:</strong> ขอความยินยอมในการดึงและประมวลผลข้อมูลส่วนบุคคล</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section page-break">
+            <h2>ส่วนที่ 3: กระบวนการทำงาน (Process Flow)</h2>
+            
+            <div class="process-step">
+                <h4>1. การตั้งค่าและเตรียมข้อมูล (Setup) - เจ้าหน้าที่</h4>
+                <ul>
+                    <li><strong>Sync Data:</strong> ระบบดึงข้อมูลเกรดและสถานะนักศึกษาล่าสุดจาก REG UBU</li>
+                    <li><strong>Create Scholarship:</strong> สร้างทุน กำหนดเกณฑ์คะแนน (Weighted Scoring) และงบประมาณ</li>
+                    <li><strong>Scheduling:</strong> กำหนดวันเปิด-ปิดรับสมัคร (System Lock)</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h4>2. การสมัคร (Apply) - นักศึกษา</h4>
+                <ul>
+                    <li><strong>Login & Consent:</strong> ล็อกอินและกดยอมรับ PDPA</li>
+                    <li><strong>Auto-Fetch Profile:</strong> ระบบดึงข้อมูลส่วนตัวและเกรดจาก REG มาแสดง (ตรวจสอบได้ แต่แก้ไขไม่ได้)</li>
+                    <li><strong>Smart Matcher:</strong> แสดงเฉพาะทุนที่มีสิทธิ์สมัคร (อิงตามข้อมูลจริงจาก REG)</li>
+                    <li><strong>Apply:</strong> กรอกเฉพาะข้อมูลเพิ่มเติม (เช่น เหตุผลขอทุน) และแนบไฟล์ธนาคาร</li>
+                </ul>
+            </div>
+
+            <div class="process-step">
+                <h4>3. การพิจารณา (Verify) - เจ้าหน้าที่</h4>
+                <ul>
+                    <li><strong>Smart Dashboard:</strong> เห็นข้อมูลที่ผ่านการตรวจสอบจาก REG แล้ว (Verified Data)</li>
+                    <li><strong>Automated Scoring:</strong> ระบบคำนวณคะแนนความเดือดร้อนให้เบื้องต้น</li>
+                    <li><strong>Action:</strong> อนุมัติ / ปฏิเสธ / เรียกสัมภาษณ์</li>
+                    <li><strong>Batch Approval:</strong> อนุมัติกลุ่มได้ทันที เพราะข้อมูลเชื่อถือได้</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section page-break">
+            <h2>ส่วนที่ 4: ฟังก์ชันการทำงาน (Functional Requirements)</h2>
+
+            <div class="role-section role-student">
+                <h3>4.1 สำหรับ "นักศึกษา" (Student)</h3>
+                <ul>
+                    <li><strong>REG Data Sync:</strong> แสดงข้อมูลส่วนตัวจากระบบทะเบียน (Read-only บางส่วนเพื่อความถูกต้อง)</li>
+                    <li><strong>Smart Recommendation:</strong> แนะนำทุนที่เหมาะสมกับเกรดและคณะ</li>
+                    <li><strong>Timeline Tracking:</strong> ติดตามสถานะ (ยื่นแล้ว -> สัมภาษณ์ -> อนุมัติ)</li>
+                    <li><strong>Mobile Friendly:</strong> รองรับการใช้งานผ่านมือถือ 100%</li>
+                </ul>
+            </div>
+
+            <div class="role-section role-admin">
+                <h3>4.2 สำหรับ "เจ้าหน้าที่" (Admin)</h3>
+                <ul>
+                    <li><strong>Advanced Filtering:</strong> ระบบค้นหาและกรองข้อมูลผู้สมัครอย่างละเอียด (สถานะ, คณะ, เกรด) ⭐</li>
+                    <li><strong>Configurable Criteria:</strong> สร้างกฎการคัดกรองจากข้อมูลทะเบียน (เช่น เฉพาะคณะวิศวะฯ, GPA > 2.75)</li>
+                    <li><strong>Smart Dashboard:</strong> ตารางข้อมูลรวม พร้อม Quick Preview ดูเอกสารไม่ต้องเปลี่ยนหน้า</li>
+                    <li><strong>Duplicate Warning:</strong> แจ้งเตือนหากนักศึกษารับทุนอื่นซ้ำซ้อน</li>
+                </ul>
+            </div>
+
+            <div class="role-section role-system">
+                <h3>4.3 ระบบความปลอดภัยและกฎหมาย (System & Security)</h3>
+                <ul>
+                    <li><strong>PDPA Consent Module:</strong> ระบบขอความยินยอมก่อนดึงข้อมูลจาก REG</li>
+                    <li><strong>Autosave:</strong> บันทึกข้อมูลร่างอัตโนมัติ</li>
+                </ul>
+            </div>
+
+            <h3>4.4 ลำดับความสำคัญของความต้องการ</h3>
             <div class="table-container">
                 <table>
                     <thead>
@@ -324,37 +339,31 @@
                             <td>FR-01</td>
                             <td>นักศึกษา</td>
                             <td><span class="priority-p0">P0</span></td>
-                            <td>Register/Login: เข้าสู่ระบบและบันทึกประวัติส่วนตัวลงไฟล์ JSON</td>
+                            <td>Login & REG Sync: เชื่อมต่อดึงข้อมูลจากทะเบียน</td>
                         </tr>
                         <tr>
                             <td>FR-02</td>
                             <td>เจ้าหน้าที่</td>
                             <td><span class="priority-p0">P0</span></td>
-                            <td>Manage Scholarship: เพิ่ม/ลบ/แก้ไข ประกาศทุน และบันทึกลงไฟล์ JSON</td>
+                            <td>Manage Scholarship: สร้างทุนและเกณฑ์คะแนน</td>
                         </tr>
                         <tr>
                             <td>FR-03</td>
                             <td>ระบบ</td>
                             <td><span class="priority-p0">P0</span></td>
-                            <td>Matching Logic: แสดงเฉพาะรายชื่อทุนที่นักศึกษาคนนั้นมีสิทธิ์สมัคร</td>
+                            <td>Auto-Filter & Scoring: คัดกรองและคำนวณคะแนน</td>
                         </tr>
                         <tr>
                             <td>FR-04</td>
                             <td>นักศึกษา</td>
                             <td><span class="priority-p0">P0</span></td>
-                            <td>Easy Apply: กดสมัครและแนบไฟล์หลักฐาน (รูปถ่าย/PDF)</td>
+                            <td>Easy Apply: สมัครและแนบไฟล์ (Auto-fill ข้อมูลเดิม)</td>
                         </tr>
                         <tr>
                             <td>FR-05</td>
                             <td>เจ้าหน้าที่</td>
                             <td><span class="priority-p0">P0</span></td>
-                            <td>Verify & Approve: ตรวจเอกสาร และเปลี่ยนสถานะในไฟล์ข้อมูลเป็น "อนุมัติ" หรือ "ปฏิเสธ"</td>
-                        </tr>
-                        <tr>
-                            <td>FR-06</td>
-                            <td>นักศึกษา</td>
-                            <td><span class="priority-p0">P0</span></td>
-                            <td>Status Tracking: ดูสถานะการสมัครของตัวเองผ่านหน้า Dashboard</td>
+                            <td>Smart Verify: ตรวจและอนุมัติแบบ Batch</td>
                         </tr>
                     </tbody>
                 </table>
@@ -362,125 +371,131 @@
         </div>
 
         <div class="section page-break">
-            <h2>ส่วนที่ 3: กระบวนการทำงานปัจจุบัน (As-Is Process)</h2>
-            <ol>
-                <li>เจ้าหน้าที่แปะประกาศกระดาษ หรือโพสต์ลงเว็บรวมๆ</li>
-                <li>นักศึกษาต้องไล่อ่านเองว่าทุนไหนรับเกรดเท่าไหร่ (สมัครผิดเงื่อนไขบ่อย)</li>
-                <li>นักศึกษากรอกใบสมัครใส่กระดาษ และเดินไปส่งที่ห้อง</li>
-                <li>เจ้าหน้าที่คัดกรองกระดาษด้วยมือ</li>
-            </ol>
-        </div>
-
-        <div class="section">
-            <h2>ส่วนที่ 4: กระบวนการที่ต้องการ (To-Be Process)</h2>
+            <h2>ส่วนที่ 5: หน้าจอตรวจสอบ (Smart Verification Dashboard)</h2>
+            <p>หน้าจอที่ออกแบบมาเพื่อลดจำนวนการคลิก และมีระบบกรองข้อมูลที่ครบถ้วน:</p>
             
-            <div class="process-step">
-                <h4>1. ขั้นตอนเตรียมทุน (เจ้าหน้าที่)</h4>
-                <ul>
-                    <li>เข้าระบบหลังบ้าน สร้างประกาศทุนใหม่</li>
-                    <li>ข้อมูลทุนจะถูกบันทึกต่อท้ายในไฟล์ <code>data.json</code></li>
-                </ul>
-            </div>
+            <div class="table-container">
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label>🔍 ค้นหา (ชื่อ/รหัส)</label>
+                        <input type="text" placeholder="ระบุคำค้นหา...">
+                    </div>
+                    <div class="filter-group">
+                        <label>📂 ประเภททุน</label>
+                        <select>
+                            <option>ทั้งหมด</option>
+                            <option>ทุนเรียนดี</option>
+                            <option>ทุนขาดแคลน</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>🎓 คณะ</label>
+                        <select>
+                            <option>ทั้งหมด</option>
+                            <option>วิศวกรรมศาสตร์</option>
+                            <option>บริหารศาสตร์</option>
+                            <option>วิทยาศาสตร์</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>📊 สถานะ</label>
+                        <select>
+                            <option>รอตรวจสอบ (Pending)</option>
+                            <option>อนุมัติแล้ว (Approved)</option>
+                            <option>ปฏิเสธ (Rejected)</option>
+                        </select>
+                    </div>
+                    <div style="flex-grow: 1; text-align: right; padding-top: 18px;">
+                        <button style="background: #34495e; color: white; border: none; padding: 7px 15px; border-radius: 4px; cursor: pointer;">🔍 กรองข้อมูล</button>
+                    </div>
+                </div>
 
-            <div class="process-step">
-                <h4>2. ขั้นตอนสมัคร (นักศึกษา)</h4>
-                <ul>
-                    <li>Login (ระบบอ่าน User จากไฟล์ JSON มาตรวจสอบ)</li>
-                    <li><strong>ระบบ Matching:</strong> ตรวจสอบเกรดจาก JSON User เทียบกับ JSON Scholarship</li>
-                    <li>เลือกทุน → กด "สมัคร" → ข้อมูลการสมัครถูกบันทึกลงไฟล์</li>
-                    <li>สถานะเริ่มต้นเป็น "รอตรวจสอบ" (Pending)</li>
-                </ul>
-            </div>
+                <div style="margin-bottom: 15px; display: flex; gap: 10px; justify-content: flex-end;">
+                    <button style="background: #27ae60; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">📥 Import CSV</button>
+                    <button style="background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">📤 Export Excel</button>
+                </div>
 
-            <div class="process-step">
-                <h4>3. ขั้นตอนพิจารณา (เจ้าหน้าที่)</h4>
-                <ul>
-                    <li>ระบบอ่านไฟล์ JSON แสดงรายชื่อผู้สมัคร</li>
-                    <li>กดอนุมัติ → ระบบอัปเดตสถานะในไฟล์ JSON ทันที</li>
-                </ul>
+                <table>
+                    <thead>
+                        <tr style="background: #34495e; color: white;">
+                            <th style="width: 30px;"><input type="checkbox"></th>
+                            <th>รหัสนักศึกษา</th>
+                            <th>ชื่อ-สกุล (REG)</th>
+                            <th>คณะ</th>
+                            <th>GPA</th>
+                            <th>รายได้/ปี</th>
+                            <th>คะแนน ⭐</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" checked></td>
+                            <td>641123456</td>
+                            <td>นาย สมชาย รักเรียน</td>
+                            <td>วิศวะ</td>
+                            <td><span style="color: #27ae60; font-weight: bold;">3.50</span></td>
+                            <td>50,000</td>
+                            <td style="color: #27ae60; font-weight: bold;">95.5</td>
+                            <td>
+                                <select style="padding: 5px;">
+                                    <option>รอตรวจ</option>
+                                    <option selected>อนุมัติ</option>
+                                    <option>สัมภาษณ์</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>641198765</td>
+                            <td>น.ส. สมหญิง จริงใจ</td>
+                            <td>บริหาร</td>
+                            <td><span style="color: #2c3e50;">2.80</span></td>
+                            <td>120,000</td>
+                            <td style="color: #f39c12; font-weight: bold;">70.0</td>
+                            <td>
+                                <select style="padding: 5px;">
+                                    <option selected>รอตรวจ</option>
+                                    <option>ปฏิเสธ</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
         <div class="section page-break">
-            <h2>ส่วนที่ 5: ผู้ใช้งานระบบ (User & Role)</h2>
-            <div class="info-box">
-                <h4>Student (นักศึกษา):</h4>
-                <ul>
-                    <li>ค้นหาและสมัครทุน, ดูสถานะ</li>
-                </ul>
-                <h4>Admin (เจ้าหน้าที่):</h4>
-                <ul>
-                    <li>จัดการทุน (CRUD), อนุมัติการสมัคร</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>ส่วนที่ 7: ข้อมูลและโครงสร้างไฟล์ (Data & File Structure)</h2>
+            <h2>ส่วนที่ 7: ข้อมูลและโครงสร้างไฟล์ (Technical Implementation)</h2>
+            <p><em>หมายเหตุ: ส่วนนี้อธิบายโครงสร้างข้อมูลภายในระบบ (Local Cache) ที่รับค่าจาก REG UBU</em></p>
             
             <h3>7.1 รูปแบบการจัดเก็บข้อมูล (Storage Method)</h3>
             <div class="info-box">
-                <h4>📂 JSON File Storage (File-based Database)</h4>
+                <h4>📂 JSON / Hybrid Storage</h4>
                 <ul>
-                    <li><strong>เหตุผลที่เลือกใช้:</strong> ต้องการความเรียบง่าย ไม่ต้องการติดตั้ง Database Server (เช่น MySQL/PostgreSQL) และสามารถย้าย Folder ไปรันที่เครื่องอื่นได้ทันที</li>
-                    <li><strong>วิธีการทำงาน:</strong> ระบบจะอ่านและเขียนข้อมูลทั้งหมดลงในไฟล์ <code>data.json</code> เพียงไฟล์เดียว (หรือแยกไฟล์ตามประเภทข้อมูล)</li>
+                    <li><strong>Primary Data:</strong> ดึงสดจาก API REG UBU (Read-only)</li>
+                    <li><strong>Application Data:</strong> ข้อมูลการสมัครและสถานะจะถูกเก็บในรูปแบบ JSON หรือ Database เพื่อความยืดหยุ่น</li>
                 </ul>
             </div>
 
-            <h3>7.2 ออกแบบโครงสร้าง JSON (JSON Schema)</h3>
-            <p>ตัวอย่างโครงสร้างข้อมูลที่จะเก็บในไฟล์ <code>data.json</code>:</p>
-            
+            <h3>7.2 ออกแบบโครงสร้าง JSON (ตัวอย่าง Application Data)</h3>
             <pre>
 {
-  <span class="code-key">"users"</span>: [
-    {
-      <span class="code-key">"id"</span>: <span class="code-string">"u001"</span>,
-      <span class="code-key">"username"</span>: <span class="code-string">"student1"</span>,
-      <span class="code-key">"password"</span>: <span class="code-string">"hashed_password_xyz"</span>,
-      <span class="code-key">"role"</span>: <span class="code-string">"student"</span>,
-      <span class="code-key">"gpa"</span>: <span class="code-number">3.50</span>,
-      <span class="code-key">"faculty"</span>: <span class="code-string">"Science"</span>
-    }
-  ],
-  <span class="code-key">"scholarships"</span>: [
-    {
-      <span class="code-key">"id"</span>: <span class="code-string">"s001"</span>,
-      <span class="code-key">"title"</span>: <span class="code-string">"ทุนเรียนดี"</span>,
-      <span class="code-key">"amount"</span>: <span class="code-number">5000</span>,
-      <span class="code-key">"min_gpa"</span>: <span class="code-number">3.00</span>
-    }
-  ],
   <span class="code-key">"applications"</span>: [
     {
       <span class="code-key">"app_id"</span>: <span class="code-string">"a001"</span>,
-      <span class="code-key">"student_id"</span>: <span class="code-string">"u001"</span>,
+      <span class="code-key">"student_id"</span>: <span class="code-string">"641123456"</span>,
       <span class="code-key">"scholarship_id"</span>: <span class="code-string">"s001"</span>,
-      <span class="code-key">"status"</span>: <span class="code-string">"Pending"</span>,
-      <span class="code-key">"apply_date"</span>: <span class="code-string">"2025-12-10"</span>
+      <span class="code-key">"reg_data_snapshot"</span>: { <span class="code-key">"gpa"</span>: <span class="code-number">3.50</span>, <span class="code-key">"faculty"</span>: <span class="code-string">"Engineering"</span> },
+      <span class="code-key">"status"</span>: <span class="code-string">"Approved"</span>,
+      <span class="code-key">"score"</span>: <span class="code-number">95.5</span>
     }
   ]
 }</pre>
-
-            <h3>7.3 Technology Stack สำหรับ Flask (No Database)</h3>
-            <div class="info-box">
-                <h4>📦 Python Libraries ที่จำเป็น:</h4>
-                <ul>
-                    <li><code>Flask</code> - Web Framework</li>
-                    <li><code>json</code> - (Built-in) จัดการอ่าน/เขียนไฟล์ข้อมูล</li>
-                    <li><code>Flask-Login</code> - จัดการ Session (โดยเขียน UserLoader เองจาก JSON)</li>
-                    <li><code>Flask-WTF</code> - สร้างและ Validate Forms</li>
-                    <li><code>Werkzeug</code> - Hash Password และจัดการ File Upload</li>
-                </ul>
-                
-                <h4 style="margin-top: 15px;">💾 ติดตั้ง Dependencies:</h4>
-                <pre style="background: #2c3e50; color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">pip install flask flask-login flask-wtf werkzeug</pre>
-                <div style="font-size: 12px; color: #f1c40f; margin-top: 5px;">* ตัด flask-sqlalchemy ออกเนื่องจากใช้ JSON Files</div>
-            </div>
         </div>
 
         <div class="section">
-            <h2>ส่วนที่ 10: หน้าจอและ UX/UI</h2>
-            <h3>10.3 โครงสร้างหน้าจอหลัก</h3>
+            <h2>ส่วนที่ 10: หน้าจอและ UX/UI (Web Structure)</h2>
             <div class="table-container">
                 <table>
                     <thead>
@@ -494,22 +509,17 @@
                         <tr>
                             <td>หน้า Login</td>
                             <td>/login</td>
-                            <td>ตรวจสอบ User/Pass จากไฟล์ JSON</td>
-                        </tr>
-                        <tr>
-                            <td>หน้า Register</td>
-                            <td>/register</td>
-                            <td>เพิ่ม User ใหม่ลงในอาร์เรย์ "users" และบันทึกไฟล์</td>
+                            <td>ตรวจสอบสิทธิ์ผ่านระบบมหาวิทยาลัย (SSO/LDAP)</td>
                         </tr>
                         <tr>
                             <td>Dashboard</td>
                             <td>/dashboard</td>
-                            <td>Filter ข้อมูล "applications" เฉพาะของ User นั้นมาแสดง</td>
+                            <td>แสดงสถานะการสมัคร และทุนที่แนะนำ (Smart Match)</td>
                         </tr>
                         <tr>
-                            <td>ค้นหาทุน</td>
-                            <td>/scholarships</td>
-                            <td>Loop ข้อมูล "scholarships" มาแสดง (กรองตามเกรด)</td>
+                            <td>Admin Verify</td>
+                            <td>/admin/verify</td>
+                            <td>หน้าจอ Smart Verification สำหรับเจ้าหน้าที่</td>
                         </tr>
                     </tbody>
                 </table>
@@ -527,68 +537,9 @@
                     <div class="info-label">เทคโนโลยี Backend:</div>
                     <div class="info-value">Flask (Python)</div>
                 </div>
-                <div class="info-row">
-                    <div class="info-label">การจัดเก็บข้อมูล:</div>
-                    <div class="info-value"><strong>JSON Files (File-based)</strong> <span style="color: #e74c3c; font-size: 0.9em;">*ไม่ต้องลง Database Server</span></div>
-                </div>
             </div>
         </div>
 
-        <div class="section">
-            <h2>ส่วนที่ 14: สรุปสิ่งที่ต้องทำต่อไป</h2>
-            
-            <h3>🎯 Phase 1: การเตรียมพื้นฐาน (สัปดาห์ที่ 1-2)</h3>
-            <ol>
-                <li><strong>ออกแบบ JSON Structure:</strong> กำหนด Keys และ Types ของข้อมูลให้ชัดเจน</li>
-                <li><strong>สร้าง Utility Function:</strong> เขียนฟังก์ชัน Python <code>load_data()</code> และ <code>save_data()</code> เพื่อจัดการไฟล์ JSON</li>
-                <li><strong>ติดตั้ง Environment:</strong>
-                    <pre style="background: #2c3e50; color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto; margin: 10px 0;">
-python -m venv venv
-# Windows: venv\Scripts\activate
-# Mac/Linux: source venv/bin/activate
-
-pip install flask flask-login flask-wtf werkzeug</pre>
-                </li>
-            </ol>
-
-            <h3>🎯 Phase 2: Backend Development (สัปดาห์ที่ 3-5)</h3>
-            <ol>
-                <li><strong>สร้างโครงสร้างโปรเจค:</strong>
-                    <pre style="background: #2c3e50; color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto; margin: 10px 0;">
-scholarship_system/
-├── app.py                # Main Flask application
-├── data_manager.py       # *สำคัญ* ตัวจัดการอ่าน/เขียนไฟล์ JSON
-├── data.json             # ไฟล์เก็บข้อมูลทั้งหมด
-├── routes/               # แยกไฟล์ Route (Auth, Student, Admin)
-├── static/               # CSS, JS, Uploads
-└── templates/            # HTML Files</pre>
-                </li>
-                <li><strong>เชื่อมต่อ Flask-Login:</strong> สร้างคลาส User ที่อ่านข้อมูลจาก Dictionary แทน Database Model</li>
-                <li><strong>สร้าง API Endpoints:</strong> เขียนฟังก์ชันรับค่าจาก Form แล้ว append ลง List ในตัวแปร Python แล้ว save กลับลงไฟล์ JSON</li>
-            </ol>
-
-            <h3>🎯 Phase 3 & 4: Frontend & Testing (สัปดาห์ที่ 6-11)</h3>
-            <ol>
-                <li><strong>HTML/Bootstrap:</strong> สร้างหน้าเว็บให้สวยงาม</li>
-                <li><strong>Testing:</strong> ทดสอบสมัครแล้วเปิดไฟล์ <code>data.json</code> ดูว่ามีข้อมูลใหม่เพิ่มเข้ามาจริงหรือไม่</li>
-                <li><strong>File Permission:</strong> ตรวจสอบว่าโปรแกรมสามารถเขียนไฟล์ (Write Permission) ในโฟลเดอร์ได้</li>
-            </ol>
-
-            <div style="background: #d4edda; border: 2px solid #28a745; padding: 15px; margin-top: 20px; border-radius: 5px;">
-                <h4 style="color: #155724; margin-top: 0;">💡 Tips สำหรับระบบ File-based:</h4>
-                <ul style="color: #155724;">
-                    <li>ระวังเรื่อง <strong>Concurrency:</strong> หากมีคนกดสมัครพร้อมกันเป๊ะๆ ไฟล์อาจจะชนกันได้ (แต่สำหรับโปรเจกต์นักศึกษาทั่วไป มักไม่เจอปัญหานี้)</li>
-                    <li>ควร Backup ไฟล์ <code>data.json</code> สม่ำเสมอ</li>
-                    <li>ถ้าข้อมูลเริ่มเยอะมาก ระบบอาจจะช้าลง (เพราะต้องอ่านไฟล์ใหม่ทุกครั้ง) แต่รับไหวที่หลักพันรายการ</li>
-                </ul>
-            </div>
-        </div>
-   
-
-        <div class="footer">
-            <p>เอกสารนี้จัดทำขึ้นสำหรับโครงการพัฒนาระบบสารสนเทศทุนการศึกษา (JSON Version)</p>
-            <p>วันที่จัดทำ: ธันวาคม 2568</p>
-        </div>
     </div>
 </body>
 </html>
