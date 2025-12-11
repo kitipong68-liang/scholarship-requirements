@@ -3,48 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requirements Gathering Form - Scholarship System (JSON Version)</title>
+    <title>Requirements Gathering Form - Scholarship System (Responsive)</title>
     <style>
-        @media print {
-            body { margin: 1.5cm; }
-            .no-print { display: none; }
-            .page-break { page-break-before: always; }
-        }
-        
+        /* =========================================
+           1. CORE STYLES (ใช้กับทุกหน้าจอ)
+           ========================================= */
         body {
             font-family: 'Sarabun', 'TH SarabunPSK', Arial, sans-serif;
             line-height: 1.6;
-            max-width: 21cm;
-            margin: 0 auto;
-            padding: 2cm;
+            margin: 0;
+            padding: 20px;
             background: #f5f5f5;
+            color: #333;
         }
-        
+
         .document {
             background: white;
-            padding: 3cm;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            /* เปลี่ยนจากความกว้าง Fixed เป็น max-width เพื่อความยืดหยุ่น */
+            max-width: 21cm; 
+            margin: 0 auto;
+            padding: 2.5cm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
-        
+
+        /* Header Styles */
         .header {
             text-align: center;
             border-bottom: 3px solid #2c3e50;
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
-        
+
         h1 {
             color: #2c3e50;
             font-size: 24px;
-            margin-bottom: 5px;
+            margin: 0 0 10px 0;
         }
-        
+
         .subtitle {
             color: #7f8c8d;
             font-size: 18px;
-            margin-top: 5px;
+            margin-bottom: 10px;
         }
-        
+
         .status-badge {
             display: inline-block;
             background: #27ae60;
@@ -52,9 +54,9 @@
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 14px;
-            margin-top: 10px;
         }
-        
+
+        /* Headings */
         h2 {
             color: #2c3e50;
             background: #ecf0f1;
@@ -62,141 +64,97 @@
             border-left: 5px solid #3498db;
             margin-top: 30px;
             font-size: 18px;
+            border-radius: 0 5px 5px 0;
         }
-        
+
         h3 {
             color: #34495e;
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
         }
-        
-        .section {
-            margin-bottom: 25px;
-        }
-        
+
+        /* Content Boxes */
         .info-box {
             background: #f8f9fa;
             border: 1px solid #dee2e6;
             padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
+            margin: 15px 0;
+            border-radius: 8px;
         }
-        
+
         .info-row {
             display: flex;
             padding: 8px 0;
             border-bottom: 1px solid #e9ecef;
         }
-        
+
         .info-row:last-child {
             border-bottom: none;
         }
-        
+
         .info-label {
             font-weight: bold;
             color: #495057;
-            width: 200px;
+            width: 30%; /* ปรับเปอร์เซ็นต์แทน px เพื่อความยืดหยุ่น */
+            min-width: 150px;
             flex-shrink: 0;
         }
-        
+
         .info-value {
             color: #212529;
+            flex-grow: 1;
+            word-break: break-word; /* ป้องกันข้อความยาวทะลุกล่อง */
         }
-        
+
+        /* Tables */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* ทำให้เลื่อนแนวนอนได้ในมือถือ */
+            margin: 15px 0;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            min-width: 600px; /* บังคับให้ตารางมีความกว้างขั้นต่ำ (จะเกิด Scroll ในมือถือ) */
         }
-        
+
         th {
             background: #34495e;
             color: white;
             padding: 12px;
             text-align: left;
             font-weight: bold;
+            white-space: nowrap; /* ห้ามตัดคำในหัวตาราง */
         }
-        
+
         td {
             padding: 10px 12px;
             border: 1px solid #ddd;
+            vertical-align: top;
         }
-        
-        tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        
-        .priority-p0 {
-            background: #e74c3c;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .priority-p1 {
-            background: #f39c12;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        ul {
-            line-height: 1.8;
-        }
-        
-        .checkmark {
-            color: #27ae60;
-            font-weight: bold;
-        }
-        
+
+        tr:nth-child(even) { background: #f8f9fa; }
+
+        /* Badges & UI Elements */
+        .priority-p0 { background: #e74c3c; color: white; padding: 3px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; }
+        .priority-p1 { background: #f39c12; color: white; padding: 3px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; }
+        .checkmark { color: #27ae60; font-weight: bold; }
+
         .process-step {
             background: #fff;
             border-left: 4px solid #3498db;
             padding: 15px;
-            margin: 10px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .process-step h4 {
-            color: #3498db;
-            margin-top: 0;
-        }
-        
-        .button-container {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-        }
-        
-        .print-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .print-btn:hover {
-            background: #2980b9;
-        }
-        
-        .footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 2px solid #ecf0f1;
-            text-align: center;
-            color: #7f8c8d;
-            font-size: 14px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: 0 5px 5px 0;
         }
 
-        /* Syntax Highlighting for JSON */
+        .process-step h4 { color: #3498db; margin-top: 0; }
+
+        /* Code Blocks */
         pre {
             background: #2c3e50;
             color: #ecf0f1;
@@ -204,11 +162,85 @@
             border-radius: 5px;
             overflow-x: auto;
             font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 14px;
+            font-size: 13px;
         }
         .code-key { color: #f1c40f; }
         .code-string { color: #2ecc71; }
         .code-number { color: #e74c3c; }
+
+        /* Button */
+        .button-container { text-align: center; margin: 40px 0; }
+        .print-btn {
+            background: #3498db; color: white; border: none; padding: 12px 30px;
+            font-size: 16px; border-radius: 5px; cursor: pointer; transition: background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .print-btn:hover { background: #2980b9; transform: translateY(-1px); }
+        
+        .footer {
+            margin-top: 50px; padding-top: 20px; border-top: 2px solid #ecf0f1;
+            text-align: center; color: #7f8c8d; font-size: 14px;
+        }
+
+        /* =========================================
+           2. RESPONSIVE STYLES (สำหรับมือถือ/แท็บเล็ต)
+           ========================================= */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px; /* ลดขอบจอ */
+            }
+
+            .document {
+                padding: 20px; /* ลดขอบกระดาษ */
+                width: auto;
+                max-width: 100%;
+            }
+
+            .header { margin-bottom: 20px; padding-bottom: 15px; }
+            h1 { font-size: 20px; }
+            .subtitle { font-size: 16px; }
+
+            /* ปรับ Info Box ให้เป็นแนวตั้ง */
+            .info-row {
+                flex-direction: column;
+            }
+
+            .info-label {
+                width: 100%;
+                margin-bottom: 5px;
+                color: #2c3e50;
+            }
+
+            .info-value {
+                padding-left: 0;
+            }
+
+            /* ปรับขนาด Font */
+            h2 { font-size: 16px; margin-top: 20px; }
+            h3 { font-size: 15px; }
+            
+            ul, ol { padding-left: 20px; }
+        }
+
+        /* =========================================
+           3. PRINT STYLES (สำหรับสั่งพิมพ์)
+           ========================================= */
+        @media print {
+            body { margin: 0; padding: 0; background: white; }
+            .document {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+                border: none;
+            }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+            a { text-decoration: none; color: black; }
+            
+            /* ป้องกันการตัดหน้าในจุดที่ไม่ควรตัด */
+            .info-box, .process-step, table { page-break-inside: avoid; }
+        }
     </style>
 </head>
 <body>
@@ -277,54 +309,56 @@
             </ul>
 
             <h3>2.3 ลำดับความสำคัญของความต้องการ</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Actor</th>
-                        <th>Priority</th>
-                        <th>รายละเอียด (Description)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>FR-01</td>
-                        <td>นักศึกษา</td>
-                        <td><span class="priority-p0">P0</span></td>
-                        <td>Register/Login: เข้าสู่ระบบและบันทึกประวัติส่วนตัวลงไฟล์ JSON</td>
-                    </tr>
-                    <tr>
-                        <td>FR-02</td>
-                        <td>เจ้าหน้าที่</td>
-                        <td><span class="priority-p0">P0</span></td>
-                        <td>Manage Scholarship: เพิ่ม/ลบ/แก้ไข ประกาศทุน และบันทึกลงไฟล์ JSON</td>
-                    </tr>
-                    <tr>
-                        <td>FR-03</td>
-                        <td>ระบบ</td>
-                        <td><span class="priority-p0">P0</span></td>
-                        <td>Matching Logic: แสดงเฉพาะรายชื่อทุนที่นักศึกษาคนนั้นมีสิทธิ์สมัคร</td>
-                    </tr>
-                    <tr>
-                        <td>FR-04</td>
-                        <td>นักศึกษา</td>
-                        <td><span class="priority-p0">P0</span></td>
-                        <td>Easy Apply: กดสมัครและแนบไฟล์หลักฐาน (รูปถ่าย/PDF)</td>
-                    </tr>
-                    <tr>
-                        <td>FR-05</td>
-                        <td>เจ้าหน้าที่</td>
-                        <td><span class="priority-p0">P0</span></td>
-                        <td>Verify & Approve: ตรวจเอกสาร และเปลี่ยนสถานะในไฟล์ข้อมูลเป็น "อนุมัติ" หรือ "ปฏิเสธ"</td>
-                    </tr>
-                    <tr>
-                        <td>FR-06</td>
-                        <td>นักศึกษา</td>
-                        <td><span class="priority-p0">P0</span></td>
-                        <td>Status Tracking: ดูสถานะการสมัครของตัวเองผ่านหน้า Dashboard</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Actor</th>
+                            <th>Priority</th>
+                            <th>รายละเอียด (Description)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FR-01</td>
+                            <td>นักศึกษา</td>
+                            <td><span class="priority-p0">P0</span></td>
+                            <td>Register/Login: เข้าสู่ระบบและบันทึกประวัติส่วนตัวลงไฟล์ JSON</td>
+                        </tr>
+                        <tr>
+                            <td>FR-02</td>
+                            <td>เจ้าหน้าที่</td>
+                            <td><span class="priority-p0">P0</span></td>
+                            <td>Manage Scholarship: เพิ่ม/ลบ/แก้ไข ประกาศทุน และบันทึกลงไฟล์ JSON</td>
+                        </tr>
+                        <tr>
+                            <td>FR-03</td>
+                            <td>ระบบ</td>
+                            <td><span class="priority-p0">P0</span></td>
+                            <td>Matching Logic: แสดงเฉพาะรายชื่อทุนที่นักศึกษาคนนั้นมีสิทธิ์สมัคร</td>
+                        </tr>
+                        <tr>
+                            <td>FR-04</td>
+                            <td>นักศึกษา</td>
+                            <td><span class="priority-p0">P0</span></td>
+                            <td>Easy Apply: กดสมัครและแนบไฟล์หลักฐาน (รูปถ่าย/PDF)</td>
+                        </tr>
+                        <tr>
+                            <td>FR-05</td>
+                            <td>เจ้าหน้าที่</td>
+                            <td><span class="priority-p0">P0</span></td>
+                            <td>Verify & Approve: ตรวจเอกสาร และเปลี่ยนสถานะในไฟล์ข้อมูลเป็น "อนุมัติ" หรือ "ปฏิเสธ"</td>
+                        </tr>
+                        <tr>
+                            <td>FR-06</td>
+                            <td>นักศึกษา</td>
+                            <td><span class="priority-p0">P0</span></td>
+                            <td>Status Tracking: ดูสถานะการสมัครของตัวเองผ่านหน้า Dashboard</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="section page-break">
@@ -447,37 +481,39 @@
         <div class="section">
             <h2>ส่วนที่ 10: หน้าจอและ UX/UI</h2>
             <h3>10.3 โครงสร้างหน้าจอหลัก</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>หน้า</th>
-                        <th>URL Route</th>
-                        <th>คำอธิบาย</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>หน้า Login</td>
-                        <td>/login</td>
-                        <td>ตรวจสอบ User/Pass จากไฟล์ JSON</td>
-                    </tr>
-                    <tr>
-                        <td>หน้า Register</td>
-                        <td>/register</td>
-                        <td>เพิ่ม User ใหม่ลงในอาร์เรย์ "users" และบันทึกไฟล์</td>
-                    </tr>
-                    <tr>
-                        <td>Dashboard</td>
-                        <td>/dashboard</td>
-                        <td>Filter ข้อมูล "applications" เฉพาะของ User นั้นมาแสดง</td>
-                    </tr>
-                    <tr>
-                        <td>ค้นหาทุน</td>
-                        <td>/scholarships</td>
-                        <td>Loop ข้อมูล "scholarships" มาแสดง (กรองตามเกรด)</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>หน้า</th>
+                            <th>URL Route</th>
+                            <th>คำอธิบาย</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>หน้า Login</td>
+                            <td>/login</td>
+                            <td>ตรวจสอบ User/Pass จากไฟล์ JSON</td>
+                        </tr>
+                        <tr>
+                            <td>หน้า Register</td>
+                            <td>/register</td>
+                            <td>เพิ่ม User ใหม่ลงในอาร์เรย์ "users" และบันทึกไฟล์</td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard</td>
+                            <td>/dashboard</td>
+                            <td>Filter ข้อมูล "applications" เฉพาะของ User นั้นมาแสดง</td>
+                        </tr>
+                        <tr>
+                            <td>ค้นหาทุน</td>
+                            <td>/scholarships</td>
+                            <td>Loop ข้อมูล "scholarships" มาแสดง (กรองตามเกรด)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="section">
@@ -548,7 +584,6 @@ scholarship_system/
             </div>
         </div>
    
-
 
         <div class="footer">
             <p>เอกสารนี้จัดทำขึ้นสำหรับโครงการพัฒนาระบบสารสนเทศทุนการศึกษา (JSON Version)</p>
